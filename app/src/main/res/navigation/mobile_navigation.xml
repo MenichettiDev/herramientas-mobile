@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_dashboard">
+
+    <fragment
+        android:id="@+id/nav_dashboard"
+        android:name="com.example.administracionherramientas.ui.dashboard.DashboardFragment"
+        android:label="Dashboard"
+        tools:layout="@layout/fragment_dashboard" />
+
+    <fragment
+        android:id="@+id/nav_herramientas"
+        android:name="com.example.administracionherramientas.ui.herramienta.HerramientaFragment"
+        android:label="Herramientas"
+        tools:layout="@layout/fragment_herramienta" />
+
+    <fragment
+        android:id="@+id/nav_prestamos"
+        android:name="com.example.administracionherramientas.ui.prestamo.PrestamoFragment"
+        android:label="Préstamos"
+        tools:layout="@layout/fragment_prestamo" />
+
+    <fragment
+        android:id="@+id/nav_reparacion"
+        android:name="com.example.administracionherramientas.ui.reparacion.ReparacionFragment"
+        android:label="Reparación"
+        tools:layout="@layout/fragment_reparacion" />
+
+    <fragment
+        android:id="@+id/nav_devolucion"
+        android:name="com.example.administracionherramientas.ui.devolucion.DevolucionFragment"
+        android:label="Devolución"
+        tools:layout="@layout/fragment_devolucion" />
+
+    <fragment
+        android:id="@+id/nav_movimientos"
+        android:name="com.example.administracionherramientas.ui.movimientos.MovimientoFragment"
+        android:label="Movimientos"
+        tools:layout="@layout/fragment_movimiento" />
+
+    <fragment
+        android:id="@+id/nav_alertas"
+        android:name="com.example.administracionherramientas.ui.alertas.AlertasFragment"
+        android:label="Alertas"
+        tools:layout="@layout/fragment_alertas" />
+
+</navigation>

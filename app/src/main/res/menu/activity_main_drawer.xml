@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_dashboard"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Dashboard" />
+        <item
+            android:id="@+id/nav_herramientas"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Herramientas" />
+        <item
+            android:id="@+id/nav_prestamos"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Prestamos" />
+        <item
+            android:id="@+id/nav_reparacion"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Reparacion" />
+        <item
+            android:id="@+id/nav_devolucion"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Devolucion" />
+        <item
+            android:id="@+id/nav_movimientos"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Movimientos" />
+        <item
+            android:id="@+id/nav_alertas"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Alertas" />
+    </group>
+</menu>
