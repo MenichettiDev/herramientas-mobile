@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.example.administracionherramientas.model_response.LoginResponse;
+import com.example.administracionherramientas.models.Rol;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -11,10 +12,12 @@ import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Body;
+import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 
 public class ApiClient {
-    public final static String BASE_URL="http://147.93.32.147:4000/";
+    public final static String BASE_URL="http://147.93.32.147:4000/api/";
 
 
 
@@ -40,8 +43,26 @@ public class ApiClient {
 
     public interface InmoServicio{
 
-        @POST("api/auth/login")
+        //Auth
+        @POST("auth/login")
         Call<LoginResponse> loginForm(@Body LoginRequest loginRequest);
+        //Alertas
+        @GET("Alerta/count-alertas-vencidas")
+        Call<Integer> getCountAlertasVencidas(@Header("Authorization") String token);
+        //Herramientas
+
+        //EstadoDisponibilidad
+
+        //Rol
+        @GET("Rol")
+        Call<Rol> getRoles(@Header("Authorization") String token);
+        //Proveedor
+
+        //Obra
+
+        //Usuario
+
+
 //
 //        @GET("api/Propietarios")
 //        Call<Propietario> getPropietario(@Header("Authorization") String token);
