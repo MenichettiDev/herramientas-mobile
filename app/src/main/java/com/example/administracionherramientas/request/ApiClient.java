@@ -4,9 +4,17 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.example.administracionherramientas.model_response.LoginResponse;
+import com.example.administracionherramientas.models.Cliente;
+import com.example.administracionherramientas.models.EstadoDisponibilidad;
+import com.example.administracionherramientas.models.Herramienta;
+import com.example.administracionherramientas.models.Obra;
+import com.example.administracionherramientas.models.Proveedor;
 import com.example.administracionherramientas.models.Rol;
+import com.example.administracionherramientas.models.Usuario;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Retrofit;
@@ -50,19 +58,35 @@ public class ApiClient {
         @GET("Alerta/count-alertas-vencidas")
         Call<Integer> getCountAlertasVencidas(@Header("Authorization") String token);
         //Herramientas
+        @GET("Herramienta/count-herramientas-disponibles")
+        Call<Integer> getCountHerramientasDisponibles(@Header("Authorization") String token);
+        @GET("Herramienta/count-herramientas-en-prestamo")
+        Call<Integer> getCountHerramientasPrestamo(@Header("Authorization") String token);
+        @GET("Herramienta/count-herramientas-en-reparacion")
+        Call<Integer> getCountHerramientasReparacion(@Header("Authorization") String token);
+        @GET("Herramienta/paged")
+        Call<List<Herramienta>> getHerramientasPaged(@Header("Authorization") String token);
+        @GET("Herramienta/disponibilidad") //query params disponibilidad multiple
+        Call<List<Herramienta>> getHerramientasByDisponibilidad(@Header("Authorization") String token);
 
         //EstadoDisponibilidad
-
+        @GET("EstadoDisponibilidad")
+        Call<List<EstadoDisponibilidad>> getEstadoDisponibilidad(@Header("Authorization") String token);
         //Rol
         @GET("Rol")
-        Call<Rol> getRoles(@Header("Authorization") String token);
+        Call<List<Rol>> getRoles(@Header("Authorization") String token);
         //Proveedor
-
+        @GET("Proveedor")
+        Call<List<Proveedor>> getProveedores(@Header("Authorization") String token);
         //Obra
-
+        @GET("Obra")
+        Call<List<Obra>> getObras(@Header("Authorization") String token);
         //Usuario
-
-
+        @GET("Usuario")
+        Call<List<Usuario>> getUsuarios(@Header("Authorization") String token);
+        //Cliente
+        @GET("Cliente")
+        Call<List<Cliente>> getClientes(@Header("Authorization") String token);
 //
 //        @GET("api/Propietarios")
 //        Call<Propietario> getPropietario(@Header("Authorization") String token);
