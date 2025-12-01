@@ -12,11 +12,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.administracionherramientas.R;
+import com.example.administracionherramientas.databinding.FragmentDashboardBinding;
 
 public class DashboardFragment extends Fragment {
 
     private DashboardViewModel mViewModel;
+    private FragmentDashboardBinding binding;
 
     public static DashboardFragment newInstance() {
         return new DashboardFragment();
@@ -25,14 +26,45 @@ public class DashboardFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_dashboard, container, false);
+        binding = FragmentDashboardBinding.inflate(inflater, container, false);
+        return binding.getRoot();
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         mViewModel = new ViewModelProvider(this).get(DashboardViewModel.class);
-        // TODO: Use the ViewModel
+
+        mViewModel.getDisponiblesCount().observe(getViewLifecycleOwner(), count -> {
+            if (count != null) {
+                binding.availableToolsCount.setText(String.valueOf(count));
+            }
+        });
+
+        mViewModel.getPrestamoCount().observe(getViewLifecycleOwner(), count -> {
+            if (count != null) {
+                binding.loanedToolsCount.setText(String.valueOf(count));
+            }
+        });
+
+        mViewModel.getReparacionCount().observe(getViewLifecycleOwner(), count -> {
+            if (count != null) {
+                binding.repairToolsCount.setText(String.valueOf(count));
+            }
+        });
+
+        mViewModel.getTotalCount().observe(getViewLifecycleOwner(), count -> {
+            if (count != null) {
+                binding.totalToolsCount.setText(String.valueOf(count));
+            }
+        });
+
+        mViewModel.cargarDatos();
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
+    }
 }
