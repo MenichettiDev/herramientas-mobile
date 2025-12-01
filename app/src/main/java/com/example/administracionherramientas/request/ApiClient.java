@@ -3,6 +3,7 @@ package com.example.administracionherramientas.request;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.example.administracionherramientas.model_response.CountResponse;
 import com.example.administracionherramientas.model_response.LoginResponse;
 import com.example.administracionherramientas.models.Cliente;
 import com.example.administracionherramientas.models.EstadoDisponibilidad;
@@ -56,14 +57,14 @@ public class ApiClient {
         Call<LoginResponse> loginForm(@Body LoginRequest loginRequest);
         //Alertas
         @GET("Alerta/count-alertas-vencidas")
-        Call<Integer> getCountAlertasVencidas(@Header("Authorization") String token);
+        Call<CountResponse> getCountAlertasVencidas(@Header("Authorization") String token);
         //Herramientas
         @GET("Herramienta/count-herramientas-disponibles")
-        Call<Integer> getCountHerramientasDisponibles(@Header("Authorization") String token);
+        Call<CountResponse> getCountHerramientasDisponibles(@Header("Authorization") String token);
         @GET("Herramienta/count-herramientas-en-prestamo")
-        Call<Integer> getCountHerramientasPrestamo(@Header("Authorization") String token);
+        Call<CountResponse> getCountHerramientasPrestamo(@Header("Authorization") String token);
         @GET("Herramienta/count-herramientas-en-reparacion")
-        Call<Integer> getCountHerramientasReparacion(@Header("Authorization") String token);
+        Call<CountResponse> getCountHerramientasReparacion(@Header("Authorization") String token);
         @GET("Herramienta/paged")
         Call<List<Herramienta>> getHerramientasPaged(@Header("Authorization") String token);
         @GET("Herramienta/disponibilidad") //query params disponibilidad multiple
