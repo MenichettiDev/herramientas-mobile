@@ -1,13 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.herramienta.HerramientaFragment">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello" />
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_codigo"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:hint="Código"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-</FrameLayout>
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_codigo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_nombre"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android_layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="8dp"
+        android:hint="Nombre"
+        app:layout_constraintEnd_toEndOf="@id/til_codigo"
+        app:layout_constraintStart_toStartOf="@id/til_codigo"
+        app:layout_constraintTop_toBottomOf="@id/til_codigo">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_nombre"
+            android_layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="48dp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_marca"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:hint="Marca"
+        app:layout_constraintEnd_toEndOf="@id/til_nombre"
+        app:layout_constraintStart_toStartOf="@id/til_nombre"
+        app:layout_constraintTop_toBottomOf="@id/til_nombre">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_marca"
+            A_layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="48dp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Spinner
+        android:id="@+id/spinner_disponibilidad"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="@id/til_marca"
+        app:layout_constraintStart_toStartOf="@id/til_marca"
+        app:layout_constraintTop_toBottomOf="@id/til_marca"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <Button
+        android:id="@+id/btn_procesar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Procesar"
+        app:layout_constraintEnd_toEndOf="@id/spinner_disponibilidad"
+        app:layout_constraintStart_toStartOf="@id/spinner_disponibilidad"
+        app:layout_constraintTop_toBottomOf="@id/spinner_disponibilidad" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_herramientas"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_procesar"
+        tools:listitem="@layout/item_herramienta" />
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -46,7 +46,7 @@ public class DashboardViewModel extends AndroidViewModel {
 
     public void cargarDatos() {
         String token = ApiClient.leerToken(context);
-        ApiClient.InmoServicio inmoService = ApiClient.getInmoServicio();
+        ApiClient.ApiServicio inmoService = ApiClient.getInstance().getApiClient();
 
         inmoService.getCountHerramientasDisponibles("Bearer " + token).enqueue(new Callback<CountResponse>() {
             @Override

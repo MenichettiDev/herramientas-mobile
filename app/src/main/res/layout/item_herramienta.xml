@@ -1,51 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/card"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="10dp"
-    android:background="#88121449"
-    app:cardBackgroundColor="#88121449 "
-    app:cardCornerRadius="15dp"
-    app:cardElevation="10dp"
-    app:contentPadding="15dp">
+    android:layout_margin="8dp"
+    app:cardElevation="4dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="133dp">
+        android:layout_height="wrap_content"
+        android:padding="16dp">
 
         <TextView
-            android:id="@+id/tvNombre"
+            android:id="@+id/tv_codigo_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Sierra electrica"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:text="Código:"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tvCodigo"
-            android:layout_width="wrap_content"
+            android:id="@+id/tv_codigo"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:text="ELE-0014"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginStart="8dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.501"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toEndOf="@+id/tv_codigo_label"
+            app:layout_constraintTop_toTopOf="@+id/tv_codigo_label"
+            tools:text="HER-001" />
 
         <TextView
-            android:id="@+id/tvTipo"
+            android:id="@+id/tv_nombre_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Electrico"
-            app:layout_constraintBottom_toTopOf="@+id/tvCodigo"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="8dp"
+            android:text="Nombre:"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvNombre"
-            app:layout_constraintVertical_bias="0.511" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_codigo" />
+
+        <TextView
+            android:id="@+id/tv_nombre"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tv_nombre_label"
+            app:layout_constraintTop_toTopOf="@+id/tv_nombre_label"
+            tools:text="Martillo de bola" />
+
+        <TextView
+            android:id="@+id/tv_marca_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Marca:"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_nombre" />
+
+        <TextView
+            android:id="@+id/tv_marca"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tv_marca_label"
+            app:layout_constraintTop_toTopOf="@+id/tv_marca_label"
+            tools:text="BAHCO" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.cardview.widget.CardView>
+
+</com.google.android.material.card.MaterialCardView>

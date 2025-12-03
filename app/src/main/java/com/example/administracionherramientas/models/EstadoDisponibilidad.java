@@ -1,29 +1,40 @@
 package com.example.administracionherramientas.models;
 
-public class EstadoDisponibilidad {
-    private int id;
-    private String descripcion;
+
+import com.google.gson.annotations.SerializedName;
+
+import java.io.Serializable;
+
+public class EstadoDisponibilidad implements Serializable {
+    // possible JSON keys for the id
+    @SerializedName("idEstadoDisponibilidad")
+    private int idEstadoDisponibilidad;
+
+    @SerializedName("descripcionEstado")
+    private String descripcionEstado;
+
     public EstadoDisponibilidad() {
     }
 
-    public EstadoDisponibilidad(int id, String descripcion) {
-        this.id = id;
-        this.descripcion = descripcion;
+    public int getIdEstadoDisponibilidad() {
+        return idEstadoDisponibilidad;
     }
 
-    public int getId() {
-        return id;
+    public void setIdEstadoDisponibilidad(int idEstadoDisponibilidad) {
+        this.idEstadoDisponibilidad = idEstadoDisponibilidad;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public String getDescripcionEstado() {
+        return descripcionEstado;
     }
 
-    public String getDescripcion() {
-        return descripcion;
+    public void setDescripcionEstado(String descripcionEstado) {
+        this.descripcionEstado = descripcionEstado;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    @Override
+    public String toString() {
+        String d = getDescripcionEstado();
+        return (d != null) ? d : String.valueOf(getIdEstadoDisponibilidad());
     }
 }

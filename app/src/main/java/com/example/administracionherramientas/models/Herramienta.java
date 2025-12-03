@@ -1,22 +1,44 @@
 package com.example.administracionherramientas.models;
 
-public class Herramienta {
+import com.google.gson.annotations.SerializedName;
+
+import java.io.Serializable;
+
+
+public class Herramienta implements Serializable {
+    @SerializedName("idHerramienta")
     private int IdHerramienta;
+    @SerializedName("codigo")
     private String Codigo;
+    @SerializedName("nombreHerramienta")
     private String NombreHerramienta;
+    @SerializedName("idFamilia")
     private int IdFamilia;
+    @SerializedName("tipo")
     private String Tipo;
+    @SerializedName("marca")
     private String Marca;
+    @SerializedName("serie")
     private String Serie;
+    @SerializedName("fechaDeIngreso")
     private String FechaDeIngreso;
+    @SerializedName("costoDolares")
     private double CostoDolares;
+    @SerializedName("ubicacionFisica")
     private String UbicacionFisica;
+    @SerializedName("idEstadoFisico")
     private int IdEstadoFisico;
+    @SerializedName("idPlanta")
     private int IdPlanta;
+    @SerializedName("ubicacion")
     private String ubicacion;
+    @SerializedName("activo")
     private boolean Activo;
+    @SerializedName("idDisponibilidad")
     private int IdDisponibilidad;
+    @SerializedName("diasAlerta")
     private int DiasAlerta;
+
 
     public Herramienta() {
     }

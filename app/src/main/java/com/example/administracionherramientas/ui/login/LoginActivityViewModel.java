@@ -43,10 +43,10 @@ public class LoginActivityViewModel extends AndroidViewModel {
         }
 
         //Instancia de inmoServicio
-        ApiClient.InmoServicio inmoServicio = ApiClient.getInmoServicio();
+        ApiClient.ApiServicio apiServicio = ApiClient.getInstance().getApiClient();
         
         ApiClient.LoginRequest loginRequest = new ApiClient.LoginRequest(legajo, password);
-        Call<LoginResponse> call = inmoServicio.loginForm(loginRequest);
+        Call<LoginResponse> call = apiServicio.loginForm(loginRequest);
 
         call.enqueue(new Callback<LoginResponse>() {
             @Override

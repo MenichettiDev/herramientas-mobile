@@ -4,7 +4,9 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.example.administracionherramientas.model_response.CountResponse;
+import com.example.administracionherramientas.model_response.HerramientaApiResponse;
 import com.example.administracionherramientas.model_response.LoginResponse;
+import com.example.administracionherramientas.model_response.PagedResponse;
 import com.example.administracionherramientas.models.Cliente;
 import com.example.administracionherramientas.models.EstadoDisponibilidad;
 import com.example.administracionherramientas.models.Herramienta;
@@ -24,20 +26,33 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.Url;
 
 public class ApiClient {
-    public final static String BASE_URL="http://147.93.32.147:4000/api/";
+    private static final String BASE_URL="http://147.93.32.147:4000/api/";
+    private static ApiClient apiClient;
+    private final ApiServicio apiServicio;
 
-
-
-    public static InmoServicio getInmoServicio(){
+    private ApiClient() {
         Gson gson = new GsonBuilder().setLenient().create();
-         Retrofit retrofit =new Retrofit.Builder()
+        Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
-        return retrofit.create(InmoServicio.class);
+        apiServicio = retrofit.create(ApiServicio.class);
     }
+
+    public static ApiClient getInstance() {
+        if (apiClient == null) {
+            apiClient = new ApiClient();
+        }
+        return apiClient;
+    }
+
+    public ApiServicio getApiClient() {
+        return apiServicio;
+    }
+
 
     // Clase para el cuerpo de la solicitud de login
     public static class LoginRequest {
@@ -50,7 +65,7 @@ public class ApiClient {
         }
     }
 
-    public interface InmoServicio{
+    public interface ApiServicio {
 
         //Auth
         @POST("auth/login")
@@ -65,14 +80,14 @@ public class ApiClient {
         Call<CountResponse> getCountHerramientasPrestamo(@Header("Authorization") String token);
         @GET("Herramienta/count-herramientas-en-reparacion")
         Call<CountResponse> getCountHerramientasReparacion(@Header("Authorization") String token);
-        @GET("Herramienta/paged")
-        Call<List<Herramienta>> getHerramientasPaged(@Header("Authorization") String token);
+        @GET
+        Call<HerramientaApiResponse<PagedResponse<Herramienta>>> getHerramientasPaged(@Url String url, @Header("Authorization") String token);
         @GET("Herramienta/disponibilidad") //query params disponibilidad multiple
         Call<List<Herramienta>> getHerramientasByDisponibilidad(@Header("Authorization") String token);
 
         //EstadoDisponibilidad
         @GET("EstadoDisponibilidad")
-        Call<List<EstadoDisponibilidad>> getEstadoDisponibilidad(@Header("Authorization") String token);
+        Call<HerramientaApiResponse<List<EstadoDisponibilidad>>> getEstadosDisponibilidad(@Header("Authorization") String token);
         //Rol
         @GET("Rol")
         Call<List<Rol>> getRoles(@Header("Authorization") String token);
@@ -88,37 +103,6 @@ public class ApiClient {
         //Cliente
         @GET("Cliente")
         Call<List<Cliente>> getClientes(@Header("Authorization") String token);
-//
-//        @GET("api/Propietarios")
-//        Call<Propietario> getPropietario(@Header("Authorization") String token);
-//
-//        @PUT("api/Propietarios/actualizar")
-//        Call<Propietario> editPropietario(@Header("Authorization") String token,
-//                                          @Body Propietario propietario);
-//
-//        @GET("api/Inmuebles")
-//        Call<List<Inmueble>> getInmueble(@Header("Authorization") String token);
-//
-//        @GET("api/Inmuebles/GetContratoVigente")
-//        Call<List<Inmueble>> getInmuebleContratoVigente(@Header("Authorization") String token);
-//
-//        @GET("api/contratos/inmueble/{id}")
-//        Call<Contrato> getContratoByInmueble(@Header("Authorization") String token,
-//                                             @Path("id") int idInmueble);
-//
-//        @PUT("api/Inmuebles/actualizar")
-//        Call<Inmueble> updateInmueble(@Header("Authorization") String token,
-//                                      @Body Inmueble inmueble);
-//
-//        @Multipart
-//        @POST("api/Inmuebles/cargar")
-//        Call<Inmueble> CargarInmueble(@Header("Authorization") String token,
-//                                      @Part MultipartBody.Part imagen,
-//                                      @Part("inmueble") RequestBody inmuebleBody);
-//
-//        @GET("api/pagos/contrato/{id}")
-//        Call<List<Pago>> getPagosByContrato(@Header("Authorization") String token, @retrofit2.http.Path("id") int idContrato);
-
 
     }
 
@@ -133,6 +117,4 @@ public class ApiClient {
         SharedPreferences sp = context.getSharedPreferences("token.xml", Context.MODE_PRIVATE);
         return sp.getString("token", null);
     }
-
-
 }
