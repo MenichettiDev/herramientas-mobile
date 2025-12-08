@@ -18,6 +18,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Toast;
 
 import com.example.administracionherramientas.R;
+import com.example.administracionherramientas.models.Cliente;
 import com.example.administracionherramientas.models.Herramienta;
 import com.example.administracionherramientas.models.Usuario;
 
@@ -29,6 +30,7 @@ public class PrestamoFragment extends Fragment {
     private PrestamoViewModel mViewModel;
     private AutoCompleteTextView autoCompleteUsuario;
     private AutoCompleteTextView autoCompleteHerramienta;
+    private AutoCompleteTextView autoCompleteCliente;
 
     public static PrestamoFragment newInstance() {
         return new PrestamoFragment();
@@ -40,6 +42,7 @@ public class PrestamoFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_prestamo, container, false);
         autoCompleteUsuario = root.findViewById(R.id.cb_usuario);
         autoCompleteHerramienta = root.findViewById(R.id.cb_herramientas);
+        autoCompleteCliente = root.findViewById(R.id.cb_cliente);
         return root;
     }
 
@@ -60,6 +63,14 @@ public class PrestamoFragment extends Fragment {
             if (herramientas != null) {
                 ArrayAdapter<Herramienta> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_dropdown_item_1line, herramientas);
                 autoCompleteHerramienta.setAdapter(adapter);
+                adapter.notifyDataSetChanged();
+            }
+        });
+
+        mViewModel.getClientes().observe(getViewLifecycleOwner(), clientes -> {
+            if (clientes != null) {
+                ArrayAdapter<Cliente> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_dropdown_item_1line, clientes);
+                autoCompleteCliente.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
             }
         });
@@ -92,6 +103,21 @@ public class PrestamoFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 mViewModel.fetchHerramientas(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {}
+        });
+
+        autoCompleteCliente.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (s.length() > 2) { // Para no buscar con cada letra
+                    mViewModel.fetchClientes(s.toString());
+                }
             }
 
             @Override

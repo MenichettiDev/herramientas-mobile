@@ -101,9 +101,7 @@ public class ApiClient {
         //Proveedor
         @GET("Proveedor")
         Call<List<Proveedor>> getProveedores(@Header("Authorization") String token);
-        //Obra
-        @GET("Obra")
-        Call<List<Obra>> getObras(@Header("Authorization") String token);
+
         //Usuario
         @GET("Usuario")
         Call<UsuarioResponse> getUsuarios(
@@ -111,8 +109,18 @@ public class ApiClient {
                 @Query("nombre") String nombre
         );
         //Cliente
-        @GET("Cliente")
-        Call<List<Cliente>> getClientes(@Header("Authorization") String token);
+        @GET("Cliente/getClientesCombo")
+        Call<HerramientaApiResponse<List<Cliente>>> getClientes(
+                @Header("Authorization") String token,
+                @Query("search") String search);
+
+        //Obra
+        @GET("Obra/getObrasCombo/{idCliente}")
+        Call<List<Obra>> getObras(
+                @Header("Authorization") String token,
+                @Path("idCliente") int idCliente,
+                @Query("search") String search
+        );
 
     }
 

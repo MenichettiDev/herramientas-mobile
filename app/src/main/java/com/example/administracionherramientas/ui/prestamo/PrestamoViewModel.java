@@ -9,6 +9,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.administracionherramientas.model_response.HerramientaApiResponse;
+import com.example.administracionherramientas.models.Cliente;
 import com.example.administracionherramientas.models.Herramienta;
 import com.example.administracionherramientas.models.Usuario;
 import com.example.administracionherramientas.model_response.UsuarioResponse;
@@ -28,6 +29,7 @@ public class PrestamoViewModel extends AndroidViewModel {
     private final MutableLiveData<List<Herramienta>> herramientas = new MutableLiveData<>();
     private List<Herramienta> allHerramientas = new ArrayList<>(); // Lista para mantener todas las herramientas
     private final MutableLiveData<String> error = new MutableLiveData<>();
+    private final MutableLiveData<List<Cliente>> clientes = new MutableLiveData<>();
     private final Context context;
 
     public PrestamoViewModel(@NonNull Application application) {
@@ -45,6 +47,10 @@ public class PrestamoViewModel extends AndroidViewModel {
 
     public LiveData<String> getError() {
         return error;
+    }
+
+    public LiveData<List<Cliente>> getClientes() {
+        return clientes;
     }
 
     public void fetchUsuarios(String query) {
@@ -98,6 +104,27 @@ public class PrestamoViewModel extends AndroidViewModel {
             filterHerramientas(query);
         }
     }
+
+    public void fetchClientes(String query) {
+        String token = ApiClient.leerToken(context);
+        ApiClient.getInstance().getApiClient().getClientes("Bearer " + token, query)
+                .enqueue(new Callback<HerramientaApiResponse<List<Cliente>>>() {
+                    @Override
+                    public void onResponse(Call<HerramientaApiResponse<List<Cliente>>> call, Response<HerramientaApiResponse<List<Cliente>>> response) {
+                        if (response.isSuccessful() && response.body() != null && response.body().getData() != null) {
+                            clientes.postValue(response.body().getData());
+                        } else {
+                            error.postValue("Error al obtener los clientes: " + response.message());
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<HerramientaApiResponse<List<Cliente>>> call, Throwable t) {
+                        error.postValue("Fallo en la conexión al obtener clientes: " + t.getMessage());
+                    }
+                });
+    }
+
     private void filterHerramientas(String query) {
 
         if (query == null || query.isEmpty()) {
