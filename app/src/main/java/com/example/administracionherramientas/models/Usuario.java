@@ -1,74 +1,50 @@
 package com.example.administracionherramientas.models;
 
 public class Usuario {
-    private int Id;
-    private String Nombre;
-    private String Apellido;
-    private String Legajo;
+    private int id;
+    private String nombre;
+    private String apellido;
+    private String legajo;
     private String dni;
-    private String Email;
-    private String Telefono;
-    private int RolId;
-    private boolean AccedeAlSistema;
-    private boolean Activo;
-    private String Avatar;
-    private String FechaModificacion;
-    private String FechaRegistro;
-    private int IdUsuarioCrea;
-    private int IdUsuarioModifica;
-    private String PasswordHash;
-
-    public Usuario(){}
-
-    public Usuario(int id, String nombre, String apellido, String legajo, String dni, String email, String telefono, int rolId, boolean accedeAlSistema, boolean activo, String avatar, String fechaModificacion, String fechaRegistro, int idUsuarioCrea, int idUsuarioModifica, String passwordHash) {
-        Id = id;
-        Nombre = nombre;
-        Apellido = apellido;
-        Legajo = legajo;
-        this.dni = dni;
-        Email = email;
-        Telefono = telefono;
-        RolId = rolId;
-        AccedeAlSistema = accedeAlSistema;
-        Activo = activo;
-        Avatar = avatar;
-        FechaModificacion = fechaModificacion;
-        FechaRegistro = fechaRegistro;
-        IdUsuarioCrea = idUsuarioCrea;
-        IdUsuarioModifica = idUsuarioModifica;
-        PasswordHash = passwordHash;
-    }
+    private String email;
+    private String telefono;
+    private boolean accedeAlSistema;
+    private boolean activo;
+    private String avatar;
+    private String fechaRegistro;
+    private String fechaModificacion;
+    private String rolNombre;
 
     public int getId() {
-        return Id;
+        return id;
     }
 
     public void setId(int id) {
-        Id = id;
+        this.id = id;
     }
 
     public String getNombre() {
-        return Nombre;
+        return nombre;
     }
 
     public void setNombre(String nombre) {
-        Nombre = nombre;
+        this.nombre = nombre;
     }
 
     public String getApellido() {
-        return Apellido;
+        return apellido;
     }
 
     public void setApellido(String apellido) {
-        Apellido = apellido;
+        this.apellido = apellido;
     }
 
     public String getLegajo() {
-        return Legajo;
+        return legajo;
     }
 
     public void setLegajo(String legajo) {
-        Legajo = legajo;
+        this.legajo = legajo;
     }
 
     public String getDni() {
@@ -80,90 +56,87 @@ public class Usuario {
     }
 
     public String getEmail() {
-        return Email;
+        return email;
     }
 
     public void setEmail(String email) {
-        Email = email;
+        this.email = email;
     }
 
     public String getTelefono() {
-        return Telefono;
+        return telefono;
     }
 
     public void setTelefono(String telefono) {
-        Telefono = telefono;
+        this.telefono = telefono;
     }
 
     public boolean isAccedeAlSistema() {
-        return AccedeAlSistema;
+        return accedeAlSistema;
     }
 
     public void setAccedeAlSistema(boolean accedeAlSistema) {
-        AccedeAlSistema = accedeAlSistema;
-    }
-
-    public int getRolId() {
-        return RolId;
-    }
-
-    public void setRolId(int rolId) {
-        RolId = rolId;
+        this.accedeAlSistema = accedeAlSistema;
     }
 
     public boolean isActivo() {
-        return Activo;
+        return activo;
     }
 
     public void setActivo(boolean activo) {
-        Activo = activo;
+        this.activo = activo;
     }
 
     public String getAvatar() {
-        return Avatar;
+        return avatar;
     }
 
     public void setAvatar(String avatar) {
-        Avatar = avatar;
-    }
-
-    public String getFechaModificacion() {
-        return FechaModificacion;
-    }
-
-    public void setFechaModificacion(String fechaModificacion) {
-        FechaModificacion = fechaModificacion;
+        this.avatar = avatar;
     }
 
     public String getFechaRegistro() {
-        return FechaRegistro;
+        return fechaRegistro;
     }
 
     public void setFechaRegistro(String fechaRegistro) {
-        FechaRegistro = fechaRegistro;
+        this.fechaRegistro = fechaRegistro;
     }
 
-    public int getIdUsuarioCrea() {
-        return IdUsuarioCrea;
+    public String getFechaModificacion() {
+        return fechaModificacion;
     }
 
-    public void setIdUsuarioCrea(int idUsuarioCrea) {
-        IdUsuarioCrea = idUsuarioCrea;
+    public void setFechaModificacion(String fechaModificacion) {
+        this.fechaModificacion = fechaModificacion;
     }
 
-    public int getIdUsuarioModifica() {
-        return IdUsuarioModifica;
+    public String getRolNombre() {
+        return rolNombre;
     }
 
-    public void setIdUsuarioModifica(int idUsuarioModifica) {
-        IdUsuarioModifica = idUsuarioModifica;
+    public void setRolNombre(String rolNombre) {
+        this.rolNombre = rolNombre;
     }
 
-    public String getPasswordHash() {
-        return PasswordHash;
-    }
-
-    public void setPasswordHash(String passwordHash) {
-        PasswordHash = passwordHash;
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        if (nombre != null && !nombre.equalsIgnoreCase("null")) {
+            sb.append(nombre);
+        }
+        if (apellido != null && !apellido.equalsIgnoreCase("null")) {
+            if (sb.length() > 0) {
+                sb.append(" ");
+            }
+            sb.append(apellido);
+        }
+        if (sb.length() == 0) {
+            if (legajo != null) {
+                return legajo;
+            }
+            return ""; // O un valor por defecto si todo es nulo
+        }
+        return sb.toString().trim();
     }
 }

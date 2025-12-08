@@ -7,6 +7,7 @@ import com.example.administracionherramientas.model_response.CountResponse;
 import com.example.administracionherramientas.model_response.HerramientaApiResponse;
 import com.example.administracionherramientas.model_response.LoginResponse;
 import com.example.administracionherramientas.model_response.PagedResponse;
+import com.example.administracionherramientas.model_response.UsuarioResponse;
 import com.example.administracionherramientas.models.Cliente;
 import com.example.administracionherramientas.models.EstadoDisponibilidad;
 import com.example.administracionherramientas.models.Herramienta;
@@ -26,6 +27,8 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
+import retrofit2.http.Query;
 import retrofit2.http.Url;
 
 public class ApiClient {
@@ -82,8 +85,12 @@ public class ApiClient {
         Call<CountResponse> getCountHerramientasReparacion(@Header("Authorization") String token);
         @GET
         Call<HerramientaApiResponse<PagedResponse<Herramienta>>> getHerramientasPaged(@Url String url, @Header("Authorization") String token);
-        @GET("Herramienta/disponibilidad") //query params disponibilidad multiple
-        Call<List<Herramienta>> getHerramientasByDisponibilidad(@Header("Authorization") String token);
+        @GET("Herramienta/disponibilidad/{id}")
+        Call<HerramientaApiResponse<List<Herramienta>>> getHerramientasByDisponibilidad(
+                @Header("Authorization") String token,
+                @Path("id") int disponibilidadId,
+                @Query("search") String search
+        );
 
         //EstadoDisponibilidad
         @GET("EstadoDisponibilidad")
@@ -99,7 +106,10 @@ public class ApiClient {
         Call<List<Obra>> getObras(@Header("Authorization") String token);
         //Usuario
         @GET("Usuario")
-        Call<List<Usuario>> getUsuarios(@Header("Authorization") String token);
+        Call<UsuarioResponse> getUsuarios(
+                @Header("Authorization") String token,
+                @Query("nombre") String nombre
+        );
         //Cliente
         @GET("Cliente")
         Call<List<Cliente>> getClientes(@Header("Authorization") String token);

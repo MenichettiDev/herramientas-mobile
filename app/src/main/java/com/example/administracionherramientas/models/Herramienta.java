@@ -62,6 +62,21 @@ public class Herramienta implements Serializable {
         DiasAlerta = diasAlerta;
     }
 
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        if (Codigo != null && !Codigo.trim().isEmpty()) {
+            sb.append(Codigo);
+        }
+        if (NombreHerramienta != null && !NombreHerramienta.trim().isEmpty()) {
+            if (sb.length() > 0) {
+                sb.append(" - ");
+            }
+            sb.append(NombreHerramienta);
+        }
+        return sb.toString();
+    }
+
     public int getIdHerramienta() {
         return IdHerramienta;
     }
@@ -173,6 +188,8 @@ public class Herramienta implements Serializable {
     public void setActivo(boolean activo) {
         Activo = activo;
     }
+
+
 
     public int getIdDisponibilidad() {
         return IdDisponibilidad;
