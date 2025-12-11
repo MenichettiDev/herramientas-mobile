@@ -1,16 +1,39 @@
 package com.example.administracionherramientas.models;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Proveedor {
+
+    @SerializedName("idProveedor")
     private int IdProveedor;
+
+    @SerializedName("nombreProveedor")
     private String NombreProveedor;
+
+    @SerializedName("cuit")
     private String Cuit;
+
+    @SerializedName("contacto")
     private String Contacto;
+
+    @SerializedName("telefono")
     private String Telefono;
+
+    @SerializedName("email")
     private String Email;
+
+    @SerializedName("direccion")
     private String Direccion;
+
+    @SerializedName("descripcion")
     private String Descripcion;
+
     private String proveedorcol;
+
+    @SerializedName("activo")
     private boolean Activo;
+
+    @SerializedName("eliminado")
     private boolean Eliminado;
 
     public Proveedor() {
@@ -116,5 +139,15 @@ public class Proveedor {
 
     public void setEliminado(boolean eliminado) {
         Eliminado = eliminado;
+    }
+
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        if (NombreProveedor != null && !NombreProveedor.equalsIgnoreCase("null")) {
+            sb.append(NombreProveedor);
+        }
+        return sb.toString().trim();
     }
 }
