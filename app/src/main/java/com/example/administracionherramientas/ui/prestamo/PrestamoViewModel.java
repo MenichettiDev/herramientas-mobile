@@ -8,7 +8,9 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.navigation.NavController;
 
+import com.example.administracionherramientas.R;
 import com.example.administracionherramientas.model_response.HerramientaApiResponse;
 import com.example.administracionherramientas.models.Cliente;
 import com.example.administracionherramientas.models.Herramienta;
@@ -39,6 +41,7 @@ public class PrestamoViewModel extends AndroidViewModel {
     private final MutableLiveData<String> error = new MutableLiveData<>();
     private final MutableLiveData<List<Cliente>> clientes = new MutableLiveData<>();
     private final MutableLiveData<List<Obra>> obras = new MutableLiveData<>();
+    private MutableLiveData<Boolean> navegarDashboard = new MutableLiveData<>();
     private final Context context;
 
     public PrestamoViewModel(@NonNull Application application) {
@@ -65,6 +68,8 @@ public class PrestamoViewModel extends AndroidViewModel {
     public LiveData<List<Obra>> getObras() {
         return obras;
     }
+    public LiveData<Boolean> getNavegarDashboard() { return navegarDashboard; }
+    public void resetNavegacion() { navegarDashboard.setValue(false); }
 
     public void fetchUsuarios(String query) {
         String token = ApiClient.leerToken(context);
@@ -219,6 +224,10 @@ public class PrestamoViewModel extends AndroidViewModel {
                     public void onResponse(Call<HerramientaApiResponse<Object>> call, Response<HerramientaApiResponse<Object>> response) {
                         if (response.isSuccessful()) {
                             error.postValue("Prestamo guardado correctamente");
+                            //navegacion a dashboard
+                            navegarDashboard.postValue(true);
+
+
                         } else {
                             String msg = "Error al guardar prestamo: " + response.message();
                             error.postValue(msg);

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -114,6 +115,16 @@ public class PrestamoFragment extends Fragment {
                 Toast.makeText(getContext(), error, Toast.LENGTH_SHORT).show();
             }
         });
+
+        mViewModel.getNavegarDashboard().observe(getViewLifecycleOwner(), navegarDashboard -> {
+            if (navegarDashboard != null && navegarDashboard) {
+
+                Navigation.findNavController(getView())
+                        .navigate(R.id.nav_dashboard);
+            }
+
+        });
+
 
         // ============================
         // LISTENERS
@@ -261,6 +272,26 @@ public class PrestamoFragment extends Fragment {
                     selectedFechaMillis
             );
         });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mViewModel.resetNavegacion();
+        selectedClientId = -1;
+        selectedHerramientaId = -1;
+        selectedUsuarioId = -1;
+        selectedObraId = -1;
+        selectedFechaMillis = Calendar.getInstance().getTimeInMillis();
+
+
+        if (autoCompleteUsuario != null) autoCompleteUsuario.setText("");
+        if (autoCompleteHerramienta != null) autoCompleteHerramienta.setText("");
+        if (autoCompleteCliente != null) autoCompleteCliente.setText("");
+        if (autoCompleteObra != null) {
+            autoCompleteObra.setText("");
+            autoCompleteObra.setEnabled(false);
+        }
     }
 
 }
