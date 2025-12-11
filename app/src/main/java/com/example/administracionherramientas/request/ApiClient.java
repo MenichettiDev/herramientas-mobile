@@ -15,6 +15,7 @@ import com.example.administracionherramientas.models.Obra;
 import com.example.administracionherramientas.models.Proveedor;
 import com.example.administracionherramientas.models.Rol;
 import com.example.administracionherramientas.models.Usuario;
+import com.example.administracionherramientas.models_request.PrestamoRequest;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -115,11 +116,17 @@ public class ApiClient {
                 @Query("search") String search);
 
         //Obra
-        @GET("Obra/getObrasCombo/{idCliente}")
-        Call<List<Obra>> getObras(
+        @GET("Obra/getObrasCombo")
+        Call<HerramientaApiResponse<List<Obra>>> getObras(
                 @Header("Authorization") String token,
-                @Path("idCliente") int idCliente,
+                @Query("idCliente") int idCliente,
                 @Query("search") String search
+        );
+        //Movimientos
+        @POST("MovimientoHerramienta")
+        Call<HerramientaApiResponse<Object>> guardarPrestamo(
+                @Header("Authorization") String token,
+                @Body PrestamoRequest prestamoRequest
         );
 
     }
@@ -134,5 +141,19 @@ public class ApiClient {
     public static String leerToken(Context context) {
         SharedPreferences sp = context.getSharedPreferences("token.xml", Context.MODE_PRIVATE);
         return sp.getString("token", null);
+    }
+
+    //Guardar idUsuario
+    public static void guardarIdUsuario(Context context, int idUsuario) {
+        SharedPreferences sp = context.getSharedPreferences("idUsuario.xml", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putInt("idUsuario", idUsuario);
+        editor.apply();
+    }
+
+    //Leer usuario
+    public static int leerIdUsuario(Context context) {
+        SharedPreferences sp = context.getSharedPreferences("idUsuario.xml", Context.MODE_PRIVATE);
+        return sp.getInt("idUsuario", -1);
     }
 }

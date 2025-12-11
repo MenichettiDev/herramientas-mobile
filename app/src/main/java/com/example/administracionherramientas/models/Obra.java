@@ -1,15 +1,27 @@
 package com.example.administracionherramientas.models;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Obra {
+    @SerializedName("idObra")
     private int IdObra;
+    @SerializedName("idCliente")
     private int idCliente;
+    @SerializedName("codigo")
     private String Codigo;
+    @SerializedName("nombreObra")
     private String NombreObra;
+    @SerializedName("descripcion")
     private String Descripcion;
+    @SerializedName("ubicacion")
     private String Ubicacion;
+    @SerializedName("fechaInicio")
     private String FechaInicio;
+    @SerializedName("fechaFin")
     private String FechaFin;
+    @SerializedName("activo")
     private boolean Activo;
+    @SerializedName("eliminado")
     private boolean Eliminado;
     public Obra() {
     }
@@ -105,5 +117,10 @@ public class Obra {
 
     public void setEliminado(boolean eliminado) {
         Eliminado = eliminado;
+    }
+
+    @Override
+    public String toString() {
+        return NombreObra;
     }
 }

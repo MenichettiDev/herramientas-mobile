@@ -37,7 +37,8 @@ public class LoginActivityViewModel extends AndroidViewModel {
     }
 
     public void login(String legajo, String password){
-        if (legajo.isEmpty() || password.isEmpty()) {
+//        if (legajo.isEmpty() || password.isEmpty()) {
+            if (legajo.isEmpty() ) {
             errorMutable.setValue("Todos los campos son obligatorios");
             return;
         }
@@ -45,7 +46,7 @@ public class LoginActivityViewModel extends AndroidViewModel {
         //Instancia de inmoServicio
         ApiClient.ApiServicio apiServicio = ApiClient.getInstance().getApiClient();
         
-        ApiClient.LoginRequest loginRequest = new ApiClient.LoginRequest(legajo, password);
+        ApiClient.LoginRequest loginRequest = new ApiClient.LoginRequest(legajo, "123");
         Call<LoginResponse> call = apiServicio.loginForm(loginRequest);
 
         call.enqueue(new Callback<LoginResponse>() {
@@ -54,6 +55,7 @@ public class LoginActivityViewModel extends AndroidViewModel {
                 if( response.isSuccessful() && response.body() != null) {
                     String token = response.body().getToken();
                     ApiClient.guardarToken(context,token);
+                    ApiClient.guardarIdUsuario(context, response.body().getUsuario().getId());
                     Intent intent = new Intent(getApplication(), MainActivity.class);
                     intent.setFlags(intent.FLAG_ACTIVITY_NEW_TASK);
                     getApplication().startActivity(intent);
