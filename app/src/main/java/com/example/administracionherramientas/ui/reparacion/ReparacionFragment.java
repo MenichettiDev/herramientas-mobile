@@ -187,7 +187,7 @@ public class ReparacionFragment extends Fragment {
                 return;
             }
 
-            mViewModel.guardarPrestamo(
+            mViewModel.guardarReparacion(
                     selectedHerramientaId,
                     selectedProveedorId,
                     selectedFechaMillis

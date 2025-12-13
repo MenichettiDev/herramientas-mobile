@@ -11,11 +11,13 @@ import com.example.administracionherramientas.model_response.ProveedorResponse;
 import com.example.administracionherramientas.model_response.UsuarioResponse;
 import com.example.administracionherramientas.models.Cliente;
 import com.example.administracionherramientas.models.EstadoDisponibilidad;
+import com.example.administracionherramientas.models.EstadoFisicoHerramienta;
 import com.example.administracionherramientas.models.Herramienta;
 import com.example.administracionherramientas.models.Obra;
 import com.example.administracionherramientas.models.Proveedor;
 import com.example.administracionherramientas.models.Rol;
 import com.example.administracionherramientas.models.Usuario;
+import com.example.administracionherramientas.models_request.DevolucionRequest;
 import com.example.administracionherramientas.models_request.PrestamoRequest;
 import com.example.administracionherramientas.models_request.ReparacionRequest;
 import com.google.gson.Gson;
@@ -95,6 +97,18 @@ public class ApiClient {
                 @Query("search") String search
         );
 
+        @GET("Herramienta/prestamo/usuario/{idUsuarioResponsable}")
+        Call<HerramientaApiResponse<List<Herramienta>>> getHerramientasPrestadasByUsuario(
+                @Header("Authorization") String token,
+                @Path("idUsuarioResponsable") int idUsuarioResponsable
+        );
+
+        @GET("Herramienta/reparacion/proveedor/{idProveedor}")
+        Call<HerramientaApiResponse<List<Herramienta>>> getHerramientasPrestadasByProveedor(
+                @Header("Authorization") String token,
+                @Path("idProveedor") int idProveedor
+        );
+
         //EstadoDisponibilidad
         @GET("EstadoDisponibilidad")
         Call<HerramientaApiResponse<List<EstadoDisponibilidad>>> getEstadosDisponibilidad(@Header("Authorization") String token);
@@ -118,6 +132,10 @@ public class ApiClient {
         Call<HerramientaApiResponse<List<Cliente>>> getClientes(
                 @Header("Authorization") String token,
                 @Query("search") String search);
+        //Estado fisico Herramienta
+        @GET("EstadoFisicoHerramienta")
+        Call<HerramientaApiResponse<List<EstadoFisicoHerramienta>>> getEstadoFisicoHerramienta(
+                @Header("Authorization") String token);
 
         //Obra
         @GET("Obra/getObrasCombo")
@@ -136,6 +154,12 @@ public class ApiClient {
         Call<HerramientaApiResponse<Object>> guardarReparacion(
                 @Header("Authorization") String token,
                 @Body ReparacionRequest reparacionRequest
+        );
+
+        @POST("MovimientoHerramienta")
+        Call<HerramientaApiResponse<Object>> guardarDevolucion(
+                @Header("Authorization") String token,
+                @Body DevolucionRequest devolucionRequest
         );
 
     }
