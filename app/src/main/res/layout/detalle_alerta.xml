@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.alertas.DetalleAlertaFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/tv_detalle_label_nombre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Herramienta:"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_detalle_nombre_herramienta"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            app:layout_constraintStart_toEndOf="@+id/tv_detalle_label_nombre"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="PALA ANCHA" />
+
+        <TextView
+            android:id="@+id/tv_detalle_label_codigo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Código:"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_detalle_nombre_herramienta" />
+
+        <TextView
+            android:id="@+id/tv_detalle_codigo_herramienta"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            app:layout_constraintStart_toEndOf="@+id/tv_detalle_label_codigo"
+            app:layout_constraintTop_toTopOf="@+id/tv_detalle_label_codigo"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="FER-0015" />
+
+        <TextView
+            android:id="@+id/tv_detalle_label_tipo_alerta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Tipo de Alerta:"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_detalle_codigo_herramienta" />
+
+        <TextView
+            android:id="@+id/tv_detalle_tipo_alerta"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            app:layout_constraintStart_toEndOf="@+id/tv_detalle_label_tipo_alerta"
+            app:layout_constraintTop_toTopOf="@+id/tv_detalle_label_tipo_alerta"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="Vencido" />
+
+        <TextView
+            android:id="@+id/tv_detalle_label_fecha_vencimiento"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Fecha Vencimiento:"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_detalle_tipo_alerta" />
+
+        <TextView
+            android:id="@+id/tv_detalle_fecha_vencimiento"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            app:layout_constraintStart_toEndOf="@+id/tv_detalle_label_fecha_vencimiento"
+            app:layout_constraintTop_toTopOf="@+id/tv_detalle_label_fecha_vencimiento"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="20/11/2025" />
+
+        <TextView
+            android:id="@+id/tv_detalle_label_responsable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Responsable:"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_detalle_fecha_vencimiento" />
+
+        <TextView
+            android:id="@+id/tv_detalle_responsable"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            app:layout_constraintStart_toEndOf="@+id/tv_detalle_label_responsable"
+            app:layout_constraintTop_toTopOf="@+id/tv_detalle_label_responsable"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="Franciscoo Albarelloss" />
+
+        <TextView
+            android:id="@+id/tv_detalle_label_tipo_movimiento"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Tipo Movimiento:"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_detalle_responsable" />
+
+        <TextView
+            android:id="@+id/tv_detalle_tipo_movimiento"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            app:layout_constraintStart_toEndOf="@+id/tv_detalle_label_tipo_movimiento"
+            app:layout_constraintTop_toTopOf="@+id/tv_detalle_label_tipo_movimiento"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="Préstamo" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

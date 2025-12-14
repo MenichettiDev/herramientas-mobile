@@ -43,8 +43,22 @@
 
     <fragment
         android:id="@+id/nav_alertas"
-        android:name="com.example.administracionherramientas.ui.alertas.AlertasFragment"
+        android:name="com.example.administracionherramientas.ui.alertas.AlertaFragment"
         android:label="Alertas"
-        tools:layout="@layout/fragment_alertas" />
+        tools:layout="@layout/fragment_alerta">
+        <action
+            android:id="@+id/action_nav_alertas_to_detalleAlerta"
+            app:destination="@id/detalleAlerta" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/detalleAlerta"
+        android:name="com.example.administracionherramientas.ui.alertas.DetalleAlertaFragment"
+        android:label="Detalle Alerta"
+        tools:layout="@layout/detalle_alerta">
+        <argument
+            android:name="alertaId"
+            app:argType="integer" />
+    </fragment>
 
 </navigation>

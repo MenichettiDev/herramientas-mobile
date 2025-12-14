@@ -3,11 +3,13 @@ package com.example.administracionherramientas.request;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.example.administracionherramientas.model_response.AlertaResponse;
 import com.example.administracionherramientas.model_response.CountResponse;
 import com.example.administracionherramientas.model_response.HerramientaApiResponse;
 import com.example.administracionherramientas.model_response.LoginResponse;
 import com.example.administracionherramientas.model_response.PagedResponse;
 import com.example.administracionherramientas.model_response.ProveedorResponse;
+import com.example.administracionherramientas.model_response.SingleAlertaResponse;
 import com.example.administracionherramientas.model_response.UsuarioResponse;
 import com.example.administracionherramientas.models.Cliente;
 import com.example.administracionherramientas.models.EstadoDisponibilidad;
@@ -86,6 +88,13 @@ public class ApiClient {
         //Alertas
         @GET("Alerta/count-alertas-vencidas")
         Call<CountResponse> getCountAlertasVencidas(@Header("Authorization") String token);
+        @GET("Alerta")
+        Call<AlertaResponse> getAlertas(@Header("Authorization") String token);
+        @GET("Alerta/{id}")
+        Call<SingleAlertaResponse> getAlertaById(
+                @Header("Authorization") String token,
+                @Path("id") int id
+        );
 
         //Herramientas
         @GET("Herramienta/count-herramientas-disponibles")
