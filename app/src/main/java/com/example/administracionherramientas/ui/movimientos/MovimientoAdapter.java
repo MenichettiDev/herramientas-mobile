@@ -36,7 +36,6 @@ public class MovimientoAdapter extends RecyclerView.Adapter<MovimientoAdapter.Vi
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Movimiento movimiento = lista.get(position);
-        holder.tvCodigo.setText(movimiento.getCodigoHerramienta());
         holder.tvNombre.setText(movimiento.getNombreHerramienta());
         holder.tvTipoMovimiento.setText(movimiento.getTipoMovimiento());
 
@@ -55,12 +54,11 @@ public class MovimientoAdapter extends RecyclerView.Adapter<MovimientoAdapter.Vi
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView tvCodigo, tvNombre, tvTipoMovimiento;
+        TextView  tvNombre, tvTipoMovimiento;
         ImageView ivTipoMovimiento;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            tvCodigo = itemView.findViewById(R.id.tv_codigo);
             tvNombre = itemView.findViewById(R.id.tv_nombre);
             tvTipoMovimiento = itemView.findViewById(R.id.tv_responsable);
             ivTipoMovimiento = itemView.findViewById(R.id.iv_tipo_movimiento);

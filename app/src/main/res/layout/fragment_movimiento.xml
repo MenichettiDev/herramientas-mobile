@@ -6,24 +6,24 @@
     android:layout_height="match_parent"
     tools:context=".ui.movimientos.MovimientoFragment">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/til_codigo"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:hint="Código"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+<!--    <com.google.android.material.textfield.TextInputLayout-->
+<!--        android:id="@+id/til_codigo"-->
+<!--        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="16dp"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        android:layout_marginEnd="16dp"-->
+<!--        android:hint="Código"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent">-->
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/et_codigo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </com.google.android.material.textfield.TextInputLayout>
+<!--        <com.google.android.material.textfield.TextInputEditText-->
+<!--            android:id="@+id/et_codigo"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content" />-->
+<!--    </com.google.android.material.textfield.TextInputLayout>-->
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/til_nombre"
@@ -31,11 +31,13 @@
         android_layout_height="wrap_content"
         android:layout_width="0dp"
         android:layout_height="48dp"
+        android:layout_marginStart="15dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="15dp"
         android:hint="Nombre"
-        app:layout_constraintEnd_toEndOf="@id/til_codigo"
-        app:layout_constraintStart_toStartOf="@id/til_codigo"
-        app:layout_constraintTop_toBottomOf="@id/til_codigo">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_nombre"
