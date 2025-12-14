@@ -11,4 +11,11 @@
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
     <string name="dashboard">Dashboard</string>
+
+    <string-array name="tipos_movimiento">
+        <item>Todos</item>
+        <item>Préstamo</item>
+        <item>Devolución</item>
+        <item>Envio Reparación</item>
+    </string-array>
 </resources>

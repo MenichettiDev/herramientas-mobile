@@ -13,6 +13,7 @@ import com.example.administracionherramientas.models.Cliente;
 import com.example.administracionherramientas.models.EstadoDisponibilidad;
 import com.example.administracionherramientas.models.EstadoFisicoHerramienta;
 import com.example.administracionherramientas.models.Herramienta;
+import com.example.administracionherramientas.models.Movimiento;
 import com.example.administracionherramientas.models.Obra;
 import com.example.administracionherramientas.models.Proveedor;
 import com.example.administracionherramientas.models.Rol;
@@ -42,7 +43,10 @@ public class ApiClient {
     private final ApiServicio apiServicio;
 
     private ApiClient() {
-        Gson gson = new GsonBuilder().setLenient().create();
+        Gson gson = new GsonBuilder()
+                .setDateFormat("yyyy-MM-dd'T'HH:mm:ss")
+                .setLenient()
+                .create();
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create(gson))
@@ -78,9 +82,11 @@ public class ApiClient {
         //Auth
         @POST("auth/login")
         Call<LoginResponse> loginForm(@Body LoginRequest loginRequest);
+
         //Alertas
         @GET("Alerta/count-alertas-vencidas")
         Call<CountResponse> getCountAlertasVencidas(@Header("Authorization") String token);
+
         //Herramientas
         @GET("Herramienta/count-herramientas-disponibles")
         Call<CountResponse> getCountHerramientasDisponibles(@Header("Authorization") String token);
@@ -145,6 +151,12 @@ public class ApiClient {
                 @Query("search") String search
         );
         //Movimientos
+        @GET("MovimientoHerramienta")
+        Call<HerramientaApiResponse<PagedResponse<Movimiento>>> getMovimientos(
+                @Header("Authorization") String token,
+                @Query("nombreHerramienta") String nombreHerramienta,
+                @Query("idTipoMovimiento") Integer idTipoMovimiento
+        );
         @POST("MovimientoHerramienta")
         Call<HerramientaApiResponse<Object>> guardarPrestamo(
                 @Header("Authorization") String token,
