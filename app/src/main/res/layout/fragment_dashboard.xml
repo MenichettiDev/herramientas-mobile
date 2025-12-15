@@ -172,7 +172,7 @@
                 <ImageView
                     android:layout_width="48dp"
                     android:layout_height="48dp"
-                    android:src="@drawable/devuelve"/>
+                    android:src="@drawable/stock"/>
 
                 <TextView
                     android:layout_width="wrap_content"
