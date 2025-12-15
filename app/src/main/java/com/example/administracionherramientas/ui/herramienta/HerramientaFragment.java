@@ -1,5 +1,6 @@
 package com.example.administracionherramientas.ui.herramienta;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,7 +23,7 @@ import com.example.administracionherramientas.models.Herramienta;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HerramientaFragment extends Fragment {
+public class HerramientaFragment extends Fragment implements HerramientaAdapter.OnItemClickListener {
 
     private FragmentHerramientaBinding binding;
     private HerramientaViewModel viewModel;
@@ -45,12 +46,13 @@ public class HerramientaFragment extends Fragment {
         setupObservers();
         setupListeners();
 
+        viewModel.onSuccessMessageShown();
         viewModel.cargarEstadosDisponibilidad();
         viewModel.buscarHerramientas(null, null, null, null);
     }
 
     private void setupRecyclerView() {
-        adapter = new HerramientaAdapter(herramientaList, getContext());
+        adapter = new HerramientaAdapter(herramientaList, getContext(), this);
         binding.rvHerramientas.setLayoutManager(new LinearLayoutManager(getContext()));
         binding.rvHerramientas.setAdapter(adapter);
     }
@@ -80,6 +82,12 @@ public class HerramientaFragment extends Fragment {
                 Toast.makeText(getContext(), errorMessage, Toast.LENGTH_SHORT).show();
             }
         });
+
+        viewModel.getSuccessMessage().observe(getViewLifecycleOwner(), successMessage -> {
+            if (successMessage != null) {
+                Toast.makeText(getContext(), successMessage, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void setupListeners() {
@@ -107,6 +115,18 @@ public class HerramientaFragment extends Fragment {
                 }
             }
         });
+    }
+
+    @Override
+    public void onDeleteClick(Herramienta herramienta) {
+        new AlertDialog.Builder(getContext())
+                .setTitle("Eliminar Herramienta")
+                .setMessage("¿Estás seguro de que quieres eliminar esta herramienta?")
+                .setPositiveButton("Sí", (dialog, which) -> {
+                    viewModel.eliminarHerramienta(herramienta.getIdHerramienta());
+                })
+                .setNegativeButton("No", null)
+                .show();
     }
 
     @Override

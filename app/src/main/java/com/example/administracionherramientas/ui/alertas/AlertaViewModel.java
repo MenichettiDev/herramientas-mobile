@@ -2,6 +2,7 @@ package com.example.administracionherramientas.ui.alertas;
 
 import android.app.Application;
 import android.content.Context;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -54,7 +55,7 @@ public class AlertaViewModel extends AndroidViewModel {
 
             @Override
             public void onFailure(Call<AlertaResponse> call, Throwable t) {
-                // Handle failure
+                Toast.makeText(context, "Error al obtener las alertas", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -72,7 +73,7 @@ public class AlertaViewModel extends AndroidViewModel {
 
             @Override
             public void onFailure(Call<SingleAlertaResponse> call, Throwable t) {
-                // Handle failure
+                Toast.makeText(context, "Error al obtener la alerta", Toast.LENGTH_SHORT).show();
             }
         });
     }

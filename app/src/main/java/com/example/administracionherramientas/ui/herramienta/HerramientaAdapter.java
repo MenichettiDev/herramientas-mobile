@@ -17,16 +17,21 @@ public class HerramientaAdapter extends RecyclerView.Adapter<HerramientaAdapter.
 
     private final List<Herramienta> herramientaList;
     private final Context context;
+    private final OnItemClickListener listener;
 
-    public HerramientaAdapter(List<Herramienta> herramientaList, Context context) {
+    public interface OnItemClickListener {
+        void onDeleteClick(Herramienta herramienta);
+    }
+
+    public HerramientaAdapter(List<Herramienta> herramientaList, Context context, OnItemClickListener listener) {
         this.herramientaList = herramientaList;
         this.context = context;
+        this.listener = listener;
     }
 
     @NonNull
     @Override
     public HerramientaViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        // Corrección: Usar el LayoutInflater del parent
         ItemHerramientaBinding binding = ItemHerramientaBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
         return new HerramientaViewHolder(binding);
     }
@@ -37,6 +42,7 @@ public class HerramientaAdapter extends RecyclerView.Adapter<HerramientaAdapter.
         holder.binding.tvCodigo.setText(herramienta.getCodigo());
         holder.binding.tvNombre.setText(herramienta.getNombreHerramienta());
         holder.binding.tvMarca.setText(herramienta.getMarca());
+        holder.binding.ivEliminar.setOnClickListener(v -> listener.onDeleteClick(herramienta));
     }
 
     @Override

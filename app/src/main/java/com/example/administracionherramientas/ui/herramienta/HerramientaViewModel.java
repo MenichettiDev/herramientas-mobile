@@ -17,6 +17,7 @@ import com.example.administracionherramientas.request.ApiClient;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -30,6 +31,7 @@ public class HerramientaViewModel extends AndroidViewModel {
     private final MutableLiveData<List<Herramienta>> herramientas = new MutableLiveData<>();
     private final MutableLiveData<Boolean> isLoading = new MutableLiveData<>();
     private final MutableLiveData<String> errorMessage = new MutableLiveData<>();
+    private final MutableLiveData<String> successMessage = new MutableLiveData<>();
     private final Context context;
 
     private int currentPage = 1;
@@ -60,6 +62,13 @@ public class HerramientaViewModel extends AndroidViewModel {
         return errorMessage;
     }
 
+    public LiveData<String> getSuccessMessage() {
+        return successMessage;
+    }
+
+    public void onSuccessMessageShown() {
+        successMessage.setValue(null);
+    }
 
     public void cargarEstadosDisponibilidad() {
         String token = ApiClient.leerToken(context);
@@ -95,6 +104,35 @@ public class HerramientaViewModel extends AndroidViewModel {
     public void cargarMasHerramientas(String codigo, String nombre, String marca, Integer idEstado) {
         currentPage++;
         cargarHerramientas(codigo, nombre, marca, idEstado);
+    }
+
+    public void eliminarHerramienta(int idHerramienta) {
+        String token = ApiClient.leerToken(context);
+        isLoading.setValue(true);
+        ApiClient.getInstance().getApiClient().eliminarHerramienta("Bearer " + token, idHerramienta)
+                .enqueue(new Callback<HerramientaApiResponse<Object>>() {
+                    @Override
+                    public void onResponse(Call<HerramientaApiResponse<Object>> call, Response<HerramientaApiResponse<Object>> response) {
+                        isLoading.setValue(false);
+                        if (response.isSuccessful() && response.body() != null && response.body().isSuccess()) {
+                            successMessage.setValue(response.body().getMessage());
+                            // Eliminar la herramienta de la lista local
+                            List<Herramienta> currentList = new ArrayList<>(Objects.requireNonNull(herramientas.getValue()));
+                            currentList.removeIf(herramienta -> herramienta.getIdHerramienta() == idHerramienta);
+                            herramientas.setValue(currentList);
+                        } else {
+                            errorMessage.setValue("Error al eliminar la herramienta");
+                            Log.e(TAG, "eliminarHerramienta error: code=" + response.code() + " body=" + response.body());
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<HerramientaApiResponse<Object>> call, Throwable t) {
+                        isLoading.setValue(false);
+                        errorMessage.setValue(t.getMessage());
+                        Log.e(TAG, "Error eliminarHerramienta", t);
+                    }
+                });
     }
 
     private void cargarHerramientas(String codigo, String nombre, String marca, Integer idEstado) {

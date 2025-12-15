@@ -32,6 +32,7 @@ import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
@@ -122,6 +123,12 @@ public class ApiClient {
         Call<HerramientaApiResponse<List<Herramienta>>> getHerramientasPrestadasByProveedor(
                 @Header("Authorization") String token,
                 @Path("idProveedor") int idProveedor
+        );
+
+        @DELETE("Herramienta/{id}")
+        Call<HerramientaApiResponse<Object>> eliminarHerramienta(
+                @Header("Authorization") String token,
+                @Path("id") int id
         );
 
         //EstadoDisponibilidad
