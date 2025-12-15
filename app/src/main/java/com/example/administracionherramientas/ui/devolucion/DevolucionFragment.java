@@ -164,13 +164,12 @@ public class DevolucionFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (autoCompleteUsuario.isPerformingCompletion()) return;
                 // reset selected id when user types to avoid stale selection
                 if (s.length() == 0) {
                     selectedUsuarioId = -1;
                 }
-                if (s.length() > 1) {
-                    mViewModel.fetchUsuarios(s.toString());
-                }
+                mViewModel.fetchUsuarios(s.toString());
             }
 
             @Override
@@ -183,13 +182,12 @@ public class DevolucionFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (autoCompleteProveedor.isPerformingCompletion()) return;
                 // reset selected id when user types to avoid stale selection
                 if (s.length() == 0) {
                     selectedProveedorId = -1;
                 }
-                if (s.length() > 1) {
-                    mViewModel.fetchProveedores(s.toString());
-                }
+                mViewModel.fetchProveedores(s.toString());
             }
 
             @Override
@@ -202,11 +200,11 @@ public class DevolucionFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (s.length() > 1) {
-                    mViewModel.fetchEstadoFisicoHerramientas();
-                } else if (s.length() == 0) {
+                if (autoCompleteEstadoFisicoHerramienta.isPerformingCompletion()) return;
+                if (s.length() == 0) {
                     selectedEstadoFisicoHerramientaId = -1;
                 }
+                mViewModel.fetchEstadoFisicoHerramientas();
             }
 
             @Override
@@ -231,7 +229,6 @@ public class DevolucionFragment extends Fragment {
 //            @Override
 //            public void afterTextChanged(Editable s) {}
 //        });
-
 
         autoCompleteUsuario.setOnItemClickListener((parent, view, position, id) -> {
             if (parent.getAdapter() == null || position < 0 || position >= parent.getAdapter().getCount()) return;

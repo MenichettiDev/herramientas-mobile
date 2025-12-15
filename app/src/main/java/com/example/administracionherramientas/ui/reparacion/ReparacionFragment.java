@@ -114,13 +114,12 @@ public class ReparacionFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (autoCompleteProveedor.isPerformingCompletion()) return;
                 // reset selected id when user types to avoid stale selection
                 if (s.length() == 0) {
                     selectedProveedorId = -1;
                 }
-                if (s.length() > 1) {
-                    mViewModel.fetchProveedores(s.toString());
-                }
+                mViewModel.fetchProveedores(s.toString());
             }
 
             @Override

@@ -41,11 +41,11 @@ public class MovimientoAdapter extends RecyclerView.Adapter<MovimientoAdapter.Vi
         holder.tvCodigo.setText(movimiento.getCodigoHerramienta());
 
         if (movimiento.getTipoMovimiento().equals("Prestamo")) {
-            holder.ivTipoMovimiento.setImageResource(R.drawable.presta);
+            holder.ivTipoMovimiento.setImageResource(R.drawable.derechamenu);
         } else if (movimiento.getTipoMovimiento().equals("Devolucion")) {
-            holder.ivTipoMovimiento.setImageResource(R.drawable.devuelve);
+            holder.ivTipoMovimiento.setImageResource(R.drawable.izquierdamenu);
         } else if (movimiento.getTipoMovimiento().equals("Envio Reparación")) {
-            holder.ivTipoMovimiento.setImageResource(R.drawable.repair);
+            holder.ivTipoMovimiento.setImageResource(R.drawable.repairmenu);
         }
     }
 

@@ -82,7 +82,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@drawable/repair" />
+            tools:srcCompat="@drawable/repairmenu" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

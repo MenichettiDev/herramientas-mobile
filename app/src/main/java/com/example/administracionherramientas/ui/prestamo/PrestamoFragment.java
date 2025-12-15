@@ -140,9 +140,7 @@ public class PrestamoFragment extends Fragment {
                 if (s.length() == 0) {
                     selectedUsuarioId = -1;
                 }
-                if (s.length() > 1) {
-                    mViewModel.fetchUsuarios(s.toString());
-                }
+                mViewModel.fetchUsuarios(s.toString());
             }
 
             @Override
@@ -177,6 +175,7 @@ public class PrestamoFragment extends Fragment {
                 if (s.length() > 1) {
                     mViewModel.fetchClientes(s.toString());
                 } else if (s.length() == 0) {
+                    mViewModel.fetchClientes("");
                     selectedClientId = -1;
                     autoCompleteObra.setText("");
                     autoCompleteObra.setEnabled(false);
@@ -207,7 +206,7 @@ public class PrestamoFragment extends Fragment {
                 if (s.length() == 0) {
                     selectedObraId = -1;
                 }
-                if (selectedClientId != -1 && s.length() > 2) {
+                if (selectedClientId != -1) {
                     mViewModel.fetchObras(selectedClientId, s.toString());
                 }
             }
