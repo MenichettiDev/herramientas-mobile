@@ -38,6 +38,7 @@ public class MovimientoAdapter extends RecyclerView.Adapter<MovimientoAdapter.Vi
         Movimiento movimiento = lista.get(position);
         holder.tvNombre.setText(movimiento.getNombreHerramienta());
         holder.tvTipoMovimiento.setText(movimiento.getTipoMovimiento());
+        holder.tvCodigo.setText(movimiento.getCodigoHerramienta());
 
         if (movimiento.getTipoMovimiento().equals("Prestamo")) {
             holder.ivTipoMovimiento.setImageResource(R.drawable.presta);
@@ -54,7 +55,7 @@ public class MovimientoAdapter extends RecyclerView.Adapter<MovimientoAdapter.Vi
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView  tvNombre, tvTipoMovimiento;
+        TextView  tvNombre, tvTipoMovimiento, tvCodigo;
         ImageView ivTipoMovimiento;
 
         public ViewHolder(@NonNull View itemView) {
@@ -62,6 +63,7 @@ public class MovimientoAdapter extends RecyclerView.Adapter<MovimientoAdapter.Vi
             tvNombre = itemView.findViewById(R.id.tv_nombre);
             tvTipoMovimiento = itemView.findViewById(R.id.tv_responsable);
             ivTipoMovimiento = itemView.findViewById(R.id.iv_tipo_movimiento);
+            tvCodigo = itemView.findViewById(R.id.tv_codigo);
         }
     }
 }
