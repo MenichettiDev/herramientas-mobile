@@ -136,7 +136,7 @@ public class PrestamoFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                // reset selected id when user types to avoid stale selection
+                // reset
                 if (s.length() == 0) {
                     selectedUsuarioId = -1;
                 }
@@ -155,7 +155,7 @@ public class PrestamoFragment extends Fragment {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 // SI el campo está completando un item del dropDown → IGNORAR
                 if (autoCompleteHerramienta.isPerformingCompletion()) return;
-                // reset selected id when user types to avoid stale selection
+                // reset
                 if (s.length() == 0) {
                     selectedHerramientaId = -1;
                 }
@@ -202,7 +202,7 @@ public class PrestamoFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                // reset selected obra id when typing
+                // reset
                 if (s.length() == 0) {
                     selectedObraId = -1;
                 }
@@ -234,7 +234,7 @@ public class PrestamoFragment extends Fragment {
         });
 
         // ============================
-        // FECHA (CalendarView)
+        // FECHA
         // ============================
 
         selectedFechaMillis = binding.calendarView.getDate();

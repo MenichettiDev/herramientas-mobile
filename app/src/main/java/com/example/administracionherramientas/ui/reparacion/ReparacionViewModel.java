@@ -144,7 +144,7 @@ public class ReparacionViewModel extends AndroidViewModel {
         }
 
         int idUsuarioGenera = ApiClient.leerIdUsuario(context);
-        // Format date from millis to yyyy-MM-dd
+        // Formato
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault());
         String fechaEstimadaDevolucion = sdf.format(new Date(fechaEstimadaMillis));
 

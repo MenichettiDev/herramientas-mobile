@@ -134,7 +134,7 @@ public class ReparacionFragment extends Fragment {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 // SI el campo está completando un item del dropDown → IGNORAR
                 if (autoCompleteHerramienta.isPerformingCompletion()) return;
-                // reset selected id when user types to avoid stale selection
+                // reset
                 if (s.length() == 0) {
                     selectedHerramientaId = -1;
                 }
